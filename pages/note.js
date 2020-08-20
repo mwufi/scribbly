@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Editor from "../components/editor";
+import Editor from "../components/drafteditor";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
 
@@ -19,16 +19,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <Editor setWordCount={setWordCount} onSave={saveDoc} />
+        <div className={styles.editor}>
+          <Editor />
+        </div>
       </main>
 
       <footer className={styles.footer}>
