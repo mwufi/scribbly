@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "preview": "cd out && python -m http.server"
   },
   "dependencies": {
     "next": "9.5.2",
