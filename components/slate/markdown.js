@@ -1,5 +1,4 @@
-import { Node, Editor, Transforms, Range, Point } from "slate";
-import { Transaction } from "prosemirror-state";
+import { Editor, Transforms, Range, Point } from "slate";
 
 export const SHORTCUTS = {
   "*": "list-item",
