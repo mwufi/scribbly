@@ -28,6 +28,11 @@ h6,
 blockquote {
   line-height: 2em;
 }
+
+blockquote:hover {
+  background-color: aliceblue;
+}
+
 h1,
 h2,
 h3 {
