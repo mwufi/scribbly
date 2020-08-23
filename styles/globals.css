@@ -1,7 +1,37 @@
-html,
-body {
+* {
   padding: 0;
   margin: 0;
+}
+
+/* Libre Baskerville */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+
+/* Lora headers */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
+
+blockquote {
+  border-left: 2px solid #eee;
+  padding-left: 10px;
+  font-style: italic;
+  color: #aaa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote {
+  line-height: 2em;
+}
+h1,
+h2,
+h3 {
+  font-family: "Lora", "Libre Baskerville", serif;
 }
 
 a {

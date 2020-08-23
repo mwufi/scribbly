@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid blue; */
+
+  max-width: 40em;
+}
+
+.editor {
+  /* border: 1px solid green; */
+  padding: 2em;
+  width: 100%;
+
+  line-height: 1.5em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+  /* font-family: 'Libre Baskerville', serif;
+  letter-spacing: -0.2px;
+  font-size: 17px; */
+
+}
