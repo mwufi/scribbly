@@ -101,16 +101,21 @@ export default function Home(props) {
         onKeyDown={(event) => {
           console.log(event.key);
 
-          if (event.key === "x") {
+          if (event.key == "Tab") {
             event.preventDefault();
-
-            // Editor.insertBreak(editor);
-
-            // // Insert new text to replace the text in a node at a specific path.
-            Transforms.insertText(editor, "A new string of text.", {
-              at: editor.selection,
-            });
+            Editor.insertText(editor, "	");
           }
+          
+          // if (event.key === "x") {
+          //   event.preventDefault();
+
+          //   // Editor.insertBreak(editor);
+
+          //   // // Insert new text to replace the text in a node at a specific path.
+          //   Transforms.insertText(editor, "A new string of text.", {
+          //     at: editor.selection,
+          //   });
+          // }
 
           if (event.key === "&") {
             event.preventDefault();
