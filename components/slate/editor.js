@@ -1,5 +1,5 @@
 // @refresh reset
-import { createEditor, Editor, Transforms, Text } from "slate";
+import { createEditor, Editor, Transforms, Text, Node } from "slate";
 
 // Import slate components and react plugin
 import { Slate, Editable, withReact } from "slate-react";
@@ -53,6 +53,10 @@ export default function Home(props) {
     () => withShortcuts(withReact(withHistory(createEditor()))),
     []
   );
+
+  const defaultWordCount = (wc) => console.log(`${wc} words`);
+  const setWordCount = props.setWordCount || defaultWordCount;
+
   const [value, setValue] = useState([
     {
       type: "paragraph",
@@ -71,6 +75,10 @@ export default function Home(props) {
     );
   }, []);
 
+  useEffect(() => {
+    calculateWordCount(editor);
+  }, [value]);
+
   // custom elements!
   const renderElement = useCallback(
     (props) => <MarkdownElement {...props} />,
@@ -81,11 +89,29 @@ export default function Home(props) {
     return <Leaf {...props} />;
   }, []);
 
-  const saveChanges = (value) => {
-    setValue(value);
+  const calculateWordCount = (editor) => {
+    // console.log("calculating word count...");
+    let wc = 0;
+    let cc = 0;
+    for (const [node, path] of Node.texts(editor)) {
+      let s = Node.string(node) || "";
+      let words = s.match(/\w+/g) || [];
+      wc += words.length;
+      cc += s.length;
+    }
+    setWordCount({
+      words: wc,
+      characters: cc,
+    });
+  };
+
+  const saveChanges = (v) => {
+    if (v === value) return;
+
+    setValue(v);
 
     // save value to Local Storage
-    const content = JSON.stringify(value);
+    const content = JSON.stringify(v);
     localStorage.setItem("content", content);
   };
 
@@ -105,7 +131,7 @@ export default function Home(props) {
             event.preventDefault();
             Editor.insertText(editor, "	");
           }
-          
+
           // if (event.key === "x") {
           //   event.preventDefault();
 

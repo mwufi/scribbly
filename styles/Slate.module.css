@@ -18,5 +18,15 @@
   /* font-family: 'Libre Baskerville', serif;
   letter-spacing: -0.2px;
   font-size: 17px; */
+}
 
+.wordCount {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 1em;
+  text-align: right;
+
+  color: #aaa;
+  font-family: fantasy;
 }
