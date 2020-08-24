@@ -8,13 +8,14 @@ export default function Home() {
   const [wordCount, setWordCount] = useState({
     words: 0,
     characters: 0,
+    _visited: 0,
   });
 
   return (
     <div className={styles.container}>
       <div
         className={styles.wordCount}
-      >{`${wordCount.words} words`}</div>
+      >{`${wordCount.words} words, ${wordCount._visited}`}</div>
       <Editor className={styles.editor} setWordCount={setWordCount} />
     </div>
   );

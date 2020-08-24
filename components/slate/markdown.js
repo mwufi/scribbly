@@ -55,8 +55,6 @@ export const withShortcuts = (editor) => {
   editor.insertText = (text) => {
     const { selection } = editor;
 
-    console.log("selection", selection);
-
     if (text === " " && selection && Range.isCollapsed(selection)) {
       console.log("special formatting!!");
       const { anchor } = selection;

@@ -76,6 +76,7 @@ export default function Home(props) {
   }, []);
 
   useEffect(() => {
+    // ~4ms
     calculateWordCount(editor);
   }, [value]);
 
@@ -93,15 +94,18 @@ export default function Home(props) {
     // console.log("calculating word count...");
     let wc = 0;
     let cc = 0;
+    let nodesVisited = 0;
     for (const [node, path] of Node.texts(editor)) {
       let s = Node.string(node) || "";
       let words = s.match(/\w+/g) || [];
       wc += words.length;
       cc += s.length;
+      nodesVisited += 1;
     }
     setWordCount({
       words: wc,
       characters: cc,
+      _visited: nodesVisited,
     });
   };
 
@@ -110,62 +114,17 @@ export default function Home(props) {
 
     setValue(v);
 
-    // save value to Local Storage
+    // save value to Local Storage - <1ms
     const content = JSON.stringify(v);
     localStorage.setItem("content", content);
   };
 
   return (
     <Slate editor={editor} value={value} onChange={saveChanges}>
-      {/* <button onClick={(e) => Editor.deleteBackward(editor, { unit: "word" })}>
-        click me!
-      </button> */}
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         className={props.className}
-        onKeyDown={(event) => {
-          console.log(event.key);
-
-          if (event.key == "Tab") {
-            event.preventDefault();
-            Editor.insertText(editor, "	");
-          }
-
-          // if (event.key === "x") {
-          //   event.preventDefault();
-
-          //   // Editor.insertBreak(editor);
-
-          //   // // Insert new text to replace the text in a node at a specific path.
-          //   Transforms.insertText(editor, "A new string of text.", {
-          //     at: editor.selection,
-          //   });
-          // }
-
-          if (event.key === "&") {
-            event.preventDefault();
-            editor.insertText("and ");
-          }
-
-          if (!event.metaKey) return;
-
-          switch (event.key) {
-            // When ` is pressed, code blocks!
-            case "`": {
-              event.preventDefault();
-              CustomEditor.toggleCodeBlock(editor);
-              break;
-            }
-
-            // Ctrl-B bolds the text
-            case "b": {
-              event.preventDefault();
-              CustomEditor.toggleBoldMark(editor);
-              break;
-            }
-          }
-        }}
       />
     </Slate>
   );
