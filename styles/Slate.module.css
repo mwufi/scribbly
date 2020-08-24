@@ -20,6 +20,11 @@
   font-size: 17px; */
 }
 
+.editor_dark {
+  color: rgb(247, 236, 236);
+  transition: all 0.3s ease-in;
+}
+
 .wordCount {
   position: fixed;
   top: 0;
@@ -29,4 +34,14 @@
 
   color: #aaa;
   font-family: fantasy;
+}
+
+.darkmodeButton {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 1em;
+  padding: 0.3em;
+  width: 100px;
+  background-color: none;
 }
