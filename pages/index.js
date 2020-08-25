@@ -3,7 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Slate.module.css";
 import Editor from "../components/slate/editor";
 import classNames from "classnames";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [mode, setMode] = useState("dark");
@@ -14,6 +14,17 @@ export default function Home() {
   });
 
   let f = mode === "dark" ? styles.editor_dark : null;
+
+  useEffect(() => {
+    if (!!localStorage.getItem("theme")) {
+      setMode(localStorage.getItem("theme"));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(`Saving ${mode} mode`);
+    localStorage.setItem("theme", mode);
+  }, [mode]);
 
   return (
     <div
